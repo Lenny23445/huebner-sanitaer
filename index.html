@@ -642,6 +642,12 @@
   </footer>
 
   <script>
+    // Immer ganz oben starten – Hash aus URL entfernen
+    if (window.location.hash) {
+      history.replaceState(null, '', window.location.pathname);
+    }
+    window.scrollTo(0, 0);
+
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('sw.js').catch(() => {});
