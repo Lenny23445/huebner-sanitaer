@@ -43,7 +43,7 @@
     section { padding: 64px 0; }
 
     /* Sticky-Header-Offset für Anker-Navigation */
-    section[id], [id="kontakt"] { scroll-margin-top: 86px; }
+    section[id], [id="kontakt"] { scroll-margin-top: 104px; }
 
     /* ── HEADER ── */
     header {
@@ -298,7 +298,10 @@
     .footer-logo {
       width: 48px; height: 48px;
       border-radius: 50%;
-      object-fit: cover;
+      object-fit: contain;
+      background: #ffffff;
+      padding: 5px;
+      flex-shrink: 0;
     }
     .footer-brand-text h2 { font-size: 1.1rem; font-weight: 700; }
     .footer-brand-text p { font-size: 0.78rem; opacity: 0.8; }
