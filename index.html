@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hübner – Installateur u. Heizungsbaumeister in Berlin. Sanitär, Heizung, Badmodernisierung, Wärmepumpen. Jetzt anrufen!">
+  <title>Hübner – Sanitär &amp; Heizung Berlin</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1a3a6b">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Hübner Sanitär">
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: #e8f3fb;
+      color: #0f172a;
+      line-height: 1.6;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Color tokens ── */
+    :root {
+      --primary:    #1a3a6b;
+      --primary-light: #2a5298;
+      --accent:     #0369a1;
+      --bg:         #e8f3fb;
+      --bg-card:    #f0f8ff;
+      --bg-white:   #ffffff;
+      --border:     #b8d4ea;
+      --text:       #0f172a;
+      --text-muted: #475569;
+      --shadow:     0 2px 12px rgba(26,58,107,0.10);
+      --shadow-lg:  0 6px 24px rgba(26,58,107,0.15);
+    }
+
+    /* ── Layout helpers ── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+    section { padding: 64px 0; }
+
+    /* Sticky-Header-Offset für Anker-Navigation */
+    section[id], [id="kontakt"] { scroll-margin-top: 86px; }
+
+    /* ── HEADER ── */
+    header {
+      background: #ffffff;
+      color: var(--primary);
+      padding: 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 3px solid var(--primary);
+      box-shadow: 0 2px 12px rgba(26,58,107,0.10);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 10px 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .header-logo {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+    .header-text h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 0.02em;
+      line-height: 1.2;
+    }
+    .header-text p {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      letter-spacing: 0.03em;
+    }
+    nav { display: flex; gap: 4px; }
+    nav a {
+      color: var(--primary);
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 6px;
+      transition: background 150ms;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    nav a:hover { background: rgba(26,58,107,0.08); }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(160deg, #c6dff5 0%, #ddeeff 55%, #e8f3fb 100%);
+      color: var(--text);
+      padding: 72px 0 80px;
+    }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .hero-headline {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 16px;
+    }
+    .hero-sub {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* contact card */
+    .contact-card {
+      background: var(--bg-white);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 28px 28px 24px;
+      box-shadow: var(--shadow-lg);
+    }
+    .contact-card h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 18px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 10px;
+    }
+    .contact-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+    .contact-list li { display: flex; align-items: center; gap: 12px; font-size: 0.97rem; }
+    .contact-list li svg { flex-shrink: 0; color: var(--accent); }
+    .contact-list a { color: var(--primary); font-weight: 600; cursor: pointer; }
+    .contact-list a:hover { text-decoration: underline; }
+
+    .hours-box {
+      background: var(--bg);
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: 0.9rem;
+    }
+    .hours-box h3 { font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--primary); margin-bottom: 8px; }
+    .hours-row { display: flex; justify-content: space-between; gap: 8px; padding: 3px 0; }
+    .hours-row span:first-child { color: var(--text-muted); }
+    .hours-row span:last-child { font-weight: 600; }
+    .no-emergency {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84rem;
+      color: #b45309;
+      font-weight: 600;
+    }
+
+    /* ── LEISTUNGEN ── */
+    #leistungen { background: var(--bg-white); }
+    .section-title {
+      font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+      font-weight: 700;
+      color: var(--primary);
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .section-sub {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.97rem;
+      margin-bottom: 44px;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .service-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 24px;
+      transition: box-shadow 200ms, transform 200ms;
+      cursor: default;
+    }
+    .service-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-3px);
+    }
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--primary);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+    .service-icon svg { color: #fff; }
+    .service-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+    .service-card p { font-size: 0.91rem; color: var(--text-muted); line-height: 1.6; }
+
+    /* ── ÜBER UNS ── */
+    #ueber-uns { background: var(--bg); }
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+    .about-text h2 {
+      font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 16px;
+    }
+    .about-text p { color: var(--text-muted); line-height: 1.8; margin-bottom: 14px; }
+    .badges { display: flex; flex-direction: column; gap: 20px; }
+    .badge-card {
+      background: var(--bg-white);
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 22px 20px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      box-shadow: var(--shadow);
+    }
+    .badge-icon {
+      width: 56px;
+      height: 56px;
+      flex-shrink: 0;
+      background: var(--primary);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .badge-icon svg { color: #fff; }
+    .badge-icon img { width: 48px; height: 48px; object-fit: contain; border-radius: 6px; }
+    .badge-card h3 { font-size: 1rem; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+    .badge-card p { font-size: 0.87rem; color: var(--text-muted); }
+
+    /* ── TEAM ── */
+    #team { background: var(--bg-white); }
+    .team-placeholder {
+      border: 2px dashed var(--border);
+      border-radius: 14px;
+      padding: 60px 32px;
+      text-align: center;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .team-placeholder svg { margin: 0 auto 16px; color: var(--border); }
+    .team-placeholder p { font-size: 1rem; }
+    .team-placeholder small { font-size: 0.85rem; opacity: 0.75; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--primary);
+      color: #fff;
+      padding: 40px 0;
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+    .footer-brand { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .footer-logo {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .footer-brand-text h2 { font-size: 1.1rem; font-weight: 700; }
+    .footer-brand-text p { font-size: 0.78rem; opacity: 0.8; }
+    .footer-desc { font-size: 0.88rem; opacity: 0.75; line-height: 1.7; }
+    .footer-contact h3 { font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.65; margin-bottom: 14px; }
+    .footer-contact ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-contact li { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; opacity: 0.9; }
+    .footer-contact a:hover { text-decoration: underline; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.15);
+      margin-top: 32px;
+      padding-top: 18px;
+      text-align: center;
+      font-size: 0.82rem;
+      opacity: 0.6;
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .header-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+      nav { flex-wrap: wrap; gap: 4px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 32px; }
+      .about-inner { grid-template-columns: 1fr; gap: 32px; }
+      .footer-inner { grid-template-columns: 1fr; gap: 28px; }
+      section { padding: 48px 0; }
+    }
+    @media (max-width: 480px) {
+      .header-logo { width: 44px; height: 44px; }
+      .header-text h1 { font-size: 1.1rem; }
+      .hero { padding: 48px 0 56px; }
+      .contact-card { padding: 20px; }
+    }
+
+    /* ── Skip link (a11y) ── */
+    .skip-link {
+      position: absolute; top: -40px; left: 16px;
+      background: var(--accent); color: #fff;
+      padding: 8px 16px; border-radius: 0 0 6px 6px;
+      font-size: 0.9rem; font-weight: 600; z-index: 999;
+      transition: top 100ms;
+    }
+    .skip-link:focus { top: 0; }
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(32px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    /* Hero entrance */
+    .hero-headline {
+      animation: fadeUp 0.6s ease-out both;
+      animation-delay: 0.1s;
+    }
+    .hero-sub {
+      animation: fadeUp 0.6s ease-out both;
+      animation-delay: 0.25s;
+    }
+    .hero > .hero-inner > div:first-child > p:first-child {
+      animation: fadeIn 0.5s ease-out both;
+      animation-delay: 0.05s;
+    }
+    .contact-card {
+      animation: slideInRight 0.65s ease-out both;
+      animation-delay: 0.2s;
+    }
+
+    /* Scroll-reveal base state */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.55s ease-out, transform 0.55s ease-out;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Service cards stagger */
+    .service-card:nth-child(1) { transition-delay: 0.05s; }
+    .service-card:nth-child(2) { transition-delay: 0.13s; }
+    .service-card:nth-child(3) { transition-delay: 0.21s; }
+    .service-card:nth-child(4) { transition-delay: 0.29s; }
+    .service-card:nth-child(5) { transition-delay: 0.37s; }
+
+    /* Nav link underline animation */
+    nav a {
+      position: relative;
+      overflow: hidden;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 4px; left: 50%;
+      width: 0; height: 2px;
+      background: var(--primary);
+      border-radius: 1px;
+      transition: width 200ms ease, left 200ms ease;
+    }
+    nav a:hover::after {
+      width: calc(100% - 28px);
+      left: 14px;
+    }
+
+    /* Logo subtle spin on load */
+    .header-logo {
+      animation: fadeIn 0.5s ease-out both;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <!-- ══ HEADER ══ -->
+  <header role="banner">
+    <div class="header-inner">
+      <div class="header-brand">
+        <img src="logo-firma.png" alt="Hübner Logo" class="header-logo" width="56" height="56">
+        <div class="header-text">
+          <h1>Hübner</h1>
+          <p>Installateur u. Heizungsbaumeister</p>
+        </div>
+      </div>
+      <nav role="navigation" aria-label="Hauptnavigation">
+        <a href="#leistungen">Leistungen</a>
+        <a href="#ueber-uns">Über uns</a>
+        <a href="#team">Team</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ══ HERO / KONTAKT ══ -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero-inner">
+        <div>
+          <p style="font-size:0.85rem;color:var(--accent);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px;font-weight:700;">Ihr Fachbetrieb in Berlin</p>
+          <h2 id="hero-heading" class="hero-headline">Ihr zuverlässiger Partner für Sanitär &amp; Heizung in Berlin</h2>
+          <p class="hero-sub">Von der Badmodernisierung bis zur Wärmepumpe – wir kümmern uns um Ihre Anlagen mit Fachkenntnis und Zuverlässigkeit. Als anerkannter Ausbildungsbetrieb und Innungsmitglied stehen wir für Qualität und Vertrauen.</p>
+        </div>
+
+        <div class="contact-card" id="kontakt" aria-label="Kontakt">
+          <h2>Direkt Kontakt aufnehmen</h2>
+          <ul class="contact-list">
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+              <span><a href="tel:+4930291 3595" aria-label="Anrufen: 291 35 95">291 35 95</a></span>
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <span><a href="mailto:davidhuebner@aol.com">davidhuebner@aol.com</a></span>
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Döbelner Str. 4b, 12627 Berlin</span>
+            </li>
+          </ul>
+
+          <div class="hours-box" aria-label="Öffnungszeiten">
+            <h3>Telefonische Erreichbarkeit</h3>
+            <div class="hours-row"><span>Montag – Donnerstag</span><span>8:00 – 15:00 Uhr</span></div>
+            <div class="hours-row"><span>Freitag</span><span>8:00 – 13:00 Uhr</span></div>
+            <div class="no-emergency" role="note">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              Kein Notdienst
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ LEISTUNGEN ══ -->
+    <section id="leistungen" aria-labelledby="leistungen-heading">
+      <div class="container">
+        <h2 id="leistungen-heading" class="section-title">Unsere Leistungen</h2>
+        <p class="section-sub">Fachgerechte Lösungen rund um Sanitär, Heizung und Installation</p>
+        <div class="services-grid">
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <!-- Wrench icon -->
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+            </div>
+            <h3>Sanitäranlagen</h3>
+            <p>Umbau, Instandhaltung und Modernisierung von Sanitäranlagen – für dauerhafte Funktionsfähigkeit und modernen Komfort.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <!-- Pipe icon -->
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <h3>Rohrsysteme &amp; Heizung</h3>
+            <p>Montage und Instandsetzen von Rohrsystemen, Sanitärobjekten und Heizungsanlagen – fachgerecht und langlebig.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <!-- Bath icon -->
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6L9 3.5a2.5 2.5 0 015 0V6"/><path d="M2 12h20"/><path d="M20 12v4a2 2 0 01-2 2H6a2 2 0 01-2-2v-4"/><path d="M4 19v2M20 19v2"/></svg>
+            </div>
+            <h3>Badmodernisierung</h3>
+            <p>Planung und Umsetzung moderner Bäder – von der ersten Idee bis zur schlüsselfertigen Übergabe.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <!-- Flame icon -->
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0011 17c.4 0 .8-.1 1.2-.3"/><path d="M12 2C6.5 6 4 9.5 4 13a8 8 0 0016 0c0-5-4-9-8-11z"/></svg>
+            </div>
+            <h3>Gastherme &amp; Wärmepumpen</h3>
+            <p>Aufstellen, Installation und Inbetriebnahme von Gastherme, Gasanlagen und Wärmepumpen – energieeffizient und sicher.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <!-- Settings/tools icon -->
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93A10 10 0 105.93 19.07"/><path d="M19.07 4.93l-2.83 2.83"/><path d="M16.24 16.24l2.83 2.83"/><path d="M7.76 7.76L4.93 4.93"/></svg>
+            </div>
+            <h3>Kundendienst &amp; Reparaturen</h3>
+            <p>Montagen, Fehleranalyse und Störungsbeseitigung in Sanitär, Heizung und Heizungsanlagenwartung – schnell und zuverlässig.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ ÜBER UNS ══ -->
+    <section id="ueber-uns" aria-labelledby="about-heading">
+      <div class="container">
+        <div class="about-inner">
+          <div class="about-text">
+            <h2 id="about-heading">Über uns</h2>
+            <p>Das Unternehmen Hübner steht seit Jahren für handwerkliche Kompetenz und persönlichen Service im Bereich Sanitär und Heizung. Als inhabergeführter Fachbetrieb in Berlin legen wir großen Wert auf Qualität, Pünktlichkeit und einen fairen Umgang mit unseren Kunden.</p>
+            <p>Uns ist es wichtig, dass unsere Arbeit nachhaltig ist – sowohl technisch als auch im Sinne eines vertrauensvollen Kundenverhältnisses. Jeder Auftrag wird mit Sorgfalt und Fachkenntnis ausgeführt.</p>
+          </div>
+          <div class="badges" aria-label="Zertifizierungen und Mitgliedschaften">
+            <div class="badge-card">
+              <div class="badge-icon" aria-hidden="true">
+                <!-- Graduation cap SVG -->
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              </div>
+              <div>
+                <h3>Ausbildungsbetrieb</h3>
+                <p>Wir bilden den Nachwuchs von morgen aus und investieren in die Zukunft des Handwerks.</p>
+              </div>
+            </div>
+            <div class="badge-card">
+              <div class="badge-icon" style="background:transparent;border:2px solid var(--border);padding:4px;" aria-hidden="true">
+                <img src="logo-innung.png" alt="Innung SHK Berlin" width="48" height="48">
+              </div>
+              <div>
+                <h3>Innungsmitglied</h3>
+                <p>Als Mitglied der Innung stehen wir für geprüfte Fachkompetenz und hohe Qualitätsstandards.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ TEAM ══ -->
+    <section id="team" aria-labelledby="team-heading">
+      <div class="container">
+        <h2 id="team-heading" class="section-title">Unser Team</h2>
+        <p class="section-sub">Die Menschen hinter dem Betrieb</p>
+        <div class="team-placeholder" role="img" aria-label="Teamfotos folgen in Kürze">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          <p>Teamfotos folgen in Kürze</p>
+          <small>Wir stellen uns bald persönlich vor.</small>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══ FOOTER ══ -->
+  <footer role="contentinfo">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">
+          <img src="logo-firma.png" alt="Hübner Logo" class="footer-logo" width="48" height="48">
+          <div class="footer-brand-text">
+            <h2>Hübner</h2>
+            <p>Installateur u. Heizungsbaumeister</p>
+          </div>
+        </div>
+        <p class="footer-desc">Ihr zuverlässiger Fachbetrieb für Sanitär und Heizung in Berlin – mit Qualität, Erfahrung und persönlichem Service.</p>
+      </div>
+      <div class="footer-contact">
+        <h3>Kontakt</h3>
+        <ul>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+            <a href="tel:+4930291 3595">291 35 95</a>
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <a href="mailto:davidhuebner@aol.com">davidhuebner@aol.com</a>
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Döbelner Str. 4b, 12627 Berlin</span>
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Mo–Do 8–15 Uhr · Fr 8–13 Uhr</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 Hübner Sanitär &amp; Heizung &nbsp;·&nbsp; Döbelner Str. 4b, 12627 Berlin &nbsp;·&nbsp; Inhaber: David Hübner</p>
+    </div>
+  </footer>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js').catch(() => {});
+      });
+    }
+
+    // Scroll-reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.service-card, .badge-card, .about-text, .team-placeholder, .section-title, .section-sub, .footer-inner > div').forEach(el => {
+      el.classList.add('reveal');
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>

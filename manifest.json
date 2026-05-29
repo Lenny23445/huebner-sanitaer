@@ -1,0 +1,18 @@
+{
+  "name": "Hübner Sanitär & Heizung",
+  "short_name": "Hübner",
+  "description": "Installateur u. Heizungsbaumeister in Berlin",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#e8f3fb",
+  "theme_color": "#1a3a6b",
+  "lang": "de",
+  "icons": [
+    {
+      "src": "logo-firma.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
