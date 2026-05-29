@@ -42,8 +42,13 @@
     .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
     section { padding: 64px 0; }
 
-    /* Sticky-Header-Offset für Anker-Navigation */
-    section[id], [id="kontakt"] { scroll-margin-top: 104px; }
+    /* Sticky-Header-Offset für Anker-Navigation
+       Header = 83px. section padding-top = 64px.
+       Ziel: Überschrift ~30px unterhalb des Headers.
+       → sections: 83 + 30 - 64 = 49px
+       → #kontakt (kein section-padding): 83 + 8 = 91px */
+    section[id]       { scroll-margin-top: 49px; }
+    [id="kontakt"]    { scroll-margin-top: 91px; }
 
     /* ── HEADER ── */
     header {
